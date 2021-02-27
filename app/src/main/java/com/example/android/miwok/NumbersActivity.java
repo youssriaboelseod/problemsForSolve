@@ -34,31 +34,34 @@ public class NumbersActivity extends AppCompatActivity {
 
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_numbers);
-    // Create an array of words
-        ArrayList<String> words=new ArrayList<String>();
+        // Create an array of words
+        ArrayList<String> words = new ArrayList<String>();
 
         //String[] words = new String[10];
-            words.add("one");
-            words.add("two");
-            words.add("three");
-            words.add("four");
-            words.add("five");
-            words.add("six");
-            words.add("seven");
-            words.add("eight");
-            words.add("nine");
-            words.add("ten");
-            Log.v("numbersActivity","word ad index 0: "+ words.get(0));
-            Log.v("numbersActivity","word ad index 1: "+ words.get(1));
-            Log.v("numbersActivity","word ad index 1: "+ words.get(2));
-            Log.v("numbersActivity","word ad index 1: "+ words.get(3));
+        words.add("one");
+        words.add("two");
+        words.add("three");
+        words.add("four");
+        words.add("five");
+        words.add("six");
+        words.add("seven");
+        words.add("eight");
+        words.add("nine");
+        words.add("ten");
+        //Log.v("numbersActivity","word ad index 0: "+ words.get(0));
+
         // Find the View that shows the numbers category
         TextView numbers = (TextView) findViewById(R.id.numbers);
 
-        LinearLayout rootView=(LinearLayout)findViewById(R.id.rootView);
-        TextView wordView= new TextView(this);
-        wordView.setText(words.get(0));
-        rootView.addView(wordView);
+        LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
+        int index = 0;
+        while (index < words.size()) {
+            TextView wordView = new TextView(this);
+            wordView.setText(words.get(index));
+            rootView.addView(wordView);
+            index++;
+
+        }
     }
 }
 
