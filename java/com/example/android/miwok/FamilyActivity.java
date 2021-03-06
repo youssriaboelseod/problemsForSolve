@@ -31,10 +31,6 @@ public class FamilyActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
 
-        // Find the View that shows the family category
-        TextView family = (TextView) findViewById(R.id.family);
-
-
     }
 
 

@@ -31,10 +31,6 @@ public class ColorsActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_colors);
 
-        // Find the View that shows the colors category
-        TextView colors = (TextView) findViewById(R.id.colors);
-
-        // Set a click listener on that View
 
 
     }

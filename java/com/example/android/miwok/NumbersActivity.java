@@ -19,7 +19,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +39,7 @@ public class NumbersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_numbers);
         // Create an array of words
         ArrayList<String> words = new ArrayList<String>();
+        //words.add ("one")
 
         //String[] words = new String[10];
         words.add("one");
@@ -53,15 +57,13 @@ public class NumbersActivity extends AppCompatActivity {
         // Find the View that shows the numbers category
         TextView numbers = (TextView) findViewById(R.id.numbers);
 
-        LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
-        int index = 0;
-        while (index < words.size()) {
-            TextView wordView = new TextView(this);
-            wordView.setText(words.get(index));
-            rootView.addView(wordView);
-            index++;
+        //LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
 
-        }
+        ArrayAdapter<Word> itemsAdapter = new ArrayAdapter<Word>(this, android.R.layout.activity_list_item, words);
+
+        ListView listView = (GridView) findViewById(R.id.list_item);
+
+        listView.setAdapter(itemsAdapter);
     }
 }
 

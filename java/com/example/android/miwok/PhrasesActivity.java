@@ -15,8 +15,6 @@ public class PhrasesActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_phrases);
 
-        // Find the View that shows the numbers category
-        TextView phrases = (TextView) findViewById(R.id.phrases);
 
 
     }
