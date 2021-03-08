@@ -18,18 +18,38 @@ package com.example.android.miwok;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Set the content of the activity to use the activity_main.xml layout file
-        setContentView(R.layout.list_item);
+        setContentView(R.layout.word_list);
+        // Create an array of words
+        ArrayList<Word> words = new ArrayList<Word>();
+        //words.add ("one")
+
+        //String[] words = new String[10];
+        words.add(new Word("father","اب"));
+        words.add(new Word("monther","ام"));
+        words.add(new Word("sister","اخت"));
+        words.add(new Word("brother","اخ"));
+        words.add(new Word("son","ابن"));
+
+        //Log.v("numbersActivity","word ad index 0: "+ words.get(0));
+        WordAdapter adapter=new WordAdapter(this,words);
+        // Find the View that shows the numbers category
+
+        ListView listView = (ListView) findViewById(R.id.list_item);
+
+        listView.setAdapter(adapter);
 
     }
 

@@ -8,4 +8,19 @@ public class Word {
         mDefaultTranslation=defaultTranslation;
         mMiwokTranslation=miwokTranslation;
     }
+
+
+    /**
+     * Get the default translation of the word.
+     */
+    public String getDefaultTranslation() {
+        return mDefaultTranslation;
+    }
+
+    /**
+     * Get the Miwok translation of the word.
+     */
+    public String getMiwokTranslation() {
+        return mMiwokTranslation;
+    }
 }

@@ -18,9 +18,12 @@ package com.example.android.miwok;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class ColorsActivity extends AppCompatActivity {
 
@@ -29,8 +32,25 @@ public class ColorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Set the content of the activity to use the activity_main.xml layout file
-        setContentView(R.layout.list_item);
+        setContentView(R.layout.word_list);
+        // Create an array of words
+        ArrayList<Word> words = new ArrayList<Word>();
+        //words.add ("one")
 
+        //String[] words = new String[10];
+        words.add(new Word("red","احمر"));
+        words.add(new Word("yellow","اصفر"));
+        words.add(new Word("blue","ازرق"));
+        words.add(new Word("brown","بني"));
+        words.add(new Word("black","اسود"));
+
+        //Log.v("numbersActivity","word ad index 0: "+ words.get(0));
+        WordAdapter adapter=new WordAdapter(this,words);
+        // Find the View that shows the numbers category
+
+        ListView listView = (ListView) findViewById(R.id.list_item);
+
+        listView.setAdapter(adapter);
 
 
     }
