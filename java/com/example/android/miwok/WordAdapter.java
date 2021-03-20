@@ -1,4 +1,18 @@
-
+/*
+ * Copyright (C) 2016 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.android.miwok;
 
 import android.content.Context;
@@ -9,45 +23,66 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
-public class WordAdapter extends ArrayAdapter<Word>{
-// Here, we initialize the WordAdapter's internal storage for the context and the list.
-// the second argument is used when the WordAdapter is populating a single TextView.
-// Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
-// going to use this second argument, so it can be any value. Here, we used 0.
-public WordAdapter(Context context, ArrayList<Word> words){
+/**
+ * {@link WordAdapter} is an {@link ArrayAdapter} that can provide the layout for each list item
+ * based on a data source, which is a list of {@link Word} objects.
+ */
 
-        super(context,0,words);
+
+public class WordAdapter extends ArrayAdapter<Word>  {
+    private int mColorResourceId;
+    /**
+     * Create a new {@link WordAdapter} object.
+     *
+     * @param context is the current context (i.e. Activity) that the adapter is being created in.
+     * @param words is the list of {@link Word}s to be displayed.
+     * @parm color is
+     */
+    public WordAdapter(Context context, ArrayList<Word> words,int colorResourceId) {
+        super(context, 0, words);
+        mColorResourceId=colorResourceId;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Check if an existing view is being reused, otherwise inflate the view
+        View listItemView = convertView;
+        if (listItemView == null) {
+            listItemView = LayoutInflater.from(getContext()).inflate(
+                    R.layout.list_item, parent, false);
         }
 
-public View getView(int position,View convertView,ViewGroup parent){
-        // Check if the existing view is being reused, otherwise inflate the view
-        View listItemView=convertView;
-        if(listItemView==null){
-        listItemView=LayoutInflater.from(getContext()).inflate(
-        R.layout.list_item,parent,false);
-        }
+        // Get the {@link Word} object located at this position in the list
+        Word currentWord = getItem(position);
 
-        // Get the {@link AndroidFlavor} object located at this position in the list
-        Word currentWord=getItem(position);
+        // Find the TextView in the list_item.xml layout with the ID miwok_text_view.
+        TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
+        // Get the Miwok translation from the currentWord object and set this text on
+        // the Miwok TextView.
+        miwokTextView.setText(currentWord.getMiwokTranslation());
 
-        // Find the TextView in the list_item.xml layout with the ID version_name
-        TextView nameTextView=(TextView)listItemView.findViewById(R.id.miwok_text_view);
-        // Get the version name from the current AndroidFlavor object and
-        // set this text on the name TextView
-        nameTextView.setText(currentWord.getMiwokTranslation());
+        // Find the TextView in the list_item.xml layout with the ID default_text_view.
+        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
+        // Get the default translation from the currentWord object and set this text on
+        // the default TextView.
+        defaultTextView.setText(currentWord.getDefaultTranslation());
 
-        // Find the TextView in the list_item.xml layout with the ID version_number
-        TextView numberTextView=(TextView)listItemView.findViewById(R.id.default_text_view);
-        // Get the version number from the current AndroidFlavor object and
-        // set this text on the number TextView
-        numberTextView.setText(currentWord.getDefaultTranslation());
-
+        //finding the image view
+        ImageView imageView=(ImageView) listItemView.findViewById(R.id.image);
+            // make shoure the list has image
+        if (currentWord.haseImage()){
+                imageView.setImageResource(currentWord.getImageResourceId());
+                //make sure the view is visible
+            imageView.setVisibility(View.VISIBLE);
+                    }
+        else{            imageView.setVisibility(View.GONE) ;       }
+        View textContainer=listItemView.findViewById(R.id.text_container);
+        int color= ContextCompat=getColor(getContext(),mColorResourceId);
+        textContainer.setBackgroundColor(color);
         return listItemView;
-        }
-
+    }
 }

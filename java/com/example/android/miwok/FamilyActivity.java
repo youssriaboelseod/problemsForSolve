@@ -15,11 +15,8 @@
  */
 package com.example.android.miwok;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,30 +27,32 @@ public class FamilyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.word_list);
-        // Create an array of words
+
+        // Create a list of words
         ArrayList<Word> words = new ArrayList<Word>();
-        //words.add ("one")
+        words.add(new Word("father", "әpә",R.drawable.family_father));
+        words.add(new Word("mother", "әṭa",R.drawable.family_mother));
+        words.add(new Word("son", "angsi",R.drawable.family_son));
+        words.add(new Word("daughter", "tune",R.drawable.family_daughter));
+        words.add(new Word("older brother", "taachi",R.drawable.family_older_brother));
+        words.add(new Word("younger brother", "chalitti",R.drawable.family_younger_brother));
+        words.add(new Word("older sister", "teṭe",R.drawable.family_older_sister));
+        words.add(new Word("younger sister", "kolliti",R.drawable.family_younger_sister));
+        words.add(new Word("grandmother ", "ama",R.drawable.family_grandmother));
+        words.add(new Word("grandfather", "paapa",R.drawable.family_grandfather));
 
-        //String[] words = new String[10];
-        words.add(new Word("father","اب"));
-        words.add(new Word("monther","ام"));
-        words.add(new Word("sister","اخت"));
-        words.add(new Word("brother","اخ"));
-        words.add(new Word("son","ابن"));
+        // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
+        // adapter knows how to create list items for each item in the list.
+        WordAdapter adapter = new WordAdapter(this, words,R.color.category_family);
 
-        //Log.v("numbersActivity","word ad index 0: "+ words.get(0));
-        WordAdapter adapter=new WordAdapter(this,words);
-        // Find the View that shows the numbers category
+        // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
+        // There should be a {@link ListView} with the view ID called list, which is declared in the
+        // word_list.xml layout file.
+        ListView listView = (ListView) findViewById(R.id.list);
 
-        ListView listView = (ListView) findViewById(R.id.list_item);
-
+        // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
+        // {@link ListView} will display list items for each {@link Word} in the list.
         listView.setAdapter(adapter);
-
     }
-
-
-
 }
-
