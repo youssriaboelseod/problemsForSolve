@@ -9,7 +9,7 @@ from utiliy import get_batches
 #haracter_Level_RNN_Exercise.html
 print ("the login the file train succressfuly")
 class TexTrainer():
-    def train(net, data, epochs=10, batch_size=10, seq_length=50, lr=0.001, clip=5, val_frac=0.1, print_every=10):
+    def train(net, data, epochs, batch_size, seq_length, lr, clip=5, val_frac=0.1, print_every=10):
         ''' Training a network 
         
             Arguments
