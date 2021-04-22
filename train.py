@@ -7,7 +7,7 @@ import torch.nn.functional as F
 #from local librarary
 from utiliy import get_batches
 #haracter_Level_RNN_Exercise.html
-print ("the login the file train succressfuly")
+print ("the login the file train successfuly")
 class TexTrainer():
     def train(net, data, epochs, batch_size, seq_length, lr, clip=5, val_frac=0.1, print_every=10):
         ''' Training a network 
@@ -26,7 +26,10 @@ class TexTrainer():
             print_every: Number of steps for printing training and validation loss
         
         '''
-        
+        print ("data",data[:100])
+        print ("batch_size",batch_size)
+        print ("seq_length",seq_length)
+        print ("epochs",epochs)
 
         net.train()
         
@@ -42,14 +45,13 @@ class TexTrainer():
         
         counter = 0
         n_chars = len(net.chars)
-        print ("the login the function train is succressfuly")
+        print ("get batches",get_batches(data, batch_size, seq_length))
         for e in range(epochs):
-        
             # initialize hidden state
             h = net.init_hidden(batch_size)
-            
+            print ("init_hiding for batch",h)
             for x, y in get_batches(data, batch_size, seq_length):
-                print ("the login the loob get_batches is succressfuly")
+                print ("x",x,"y",y)
                 counter += 1
                 
                 # One-hot encode our data and make them Torch tensors
